@@ -1,4 +1,4 @@
 div
   - @tags.each do |tag|
     p
-      = tag.name
+      = link_to tag.name, "/tag/#{tag.name}"
