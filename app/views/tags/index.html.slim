@@ -1,4 +1,7 @@
-div
+.col-md-8
+.col-md-4.list-group
   - @tags.each do |tag|
-    p
-      = link_to tag.name, "/tag/#{tag.name}"
+    == link_to "/tag/#{tag.name}", class: 'list-group-item' do
+      span.badge
+        | 99
+      = tag.name
