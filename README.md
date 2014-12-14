@@ -20,4 +20,4 @@ $ unicorn
 
 **Contributors**
 
-[Awesome peoples](https://github.com/tomapp/trombinoscope/graphs/contributors)
+[Awesome peoples](https://github.com/nicodvk/blog/graphs/contributors)
