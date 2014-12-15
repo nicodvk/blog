@@ -19,45 +19,49 @@ tags = Tag.all
                tags:      tags.shuffle.take(rand(8)),
                created:   Faker::Date.between(7.days.ago, Date.today))
 end
-    admin = User.create!( birthdate:              '1993-12-10',
-                          country_code:           'France',
-                          email:                  'admin@blog.fr',
-                          firstname:              'admin',
-                          lastname:               'nimda',
-                          password:               'adminadmin',
-                          password_confirmation:  'adminadmin',
-                          phone:                  '0606060606',
-                          street:                 '4, rue Jules Guesdes',
-                          town:                   'Lille',
-                          type:                   'Users::Admin',
-                          created_at:             1.week.ago,
-                          updated_at:             1.week.ago)
 
-    writer = User.create!( birthdate:          '1993-12-10',
+admin = User.create!( birthdate:              '1993-12-10',
                       country_code:           'France',
-                      email:                  'writer@blog.fr',
-                      firstname:              'writer',
-                      lastname:               'retirw',
+                      email:                  'admin@blog.fr',
+                      firstname:              'admin',
+                      lastname:               'nimda',
                       password:               'adminadmin',
                       password_confirmation:  'adminadmin',
                       phone:                  '0606060606',
                       street:                 '4, rue Jules Guesdes',
                       town:                   'Lille',
-                      type:                   'Users::Writer',
+                      type:                   'Users::Admin',
                       created_at:             1.week.ago,
                       updated_at:             1.week.ago)
 
-    guest = User.create!( birthdate:      '1993-12-10',
+writer = User.create!( birthdate:          '1993-12-10',
                   country_code:           'France',
-                  email:                  'guest@blog.fr',
-                  firstname:              'guest',
-                  lastname:               'tseug',
+                  email:                  'writer@blog.fr',
+                  firstname:              'writer',
+                  lastname:               'retirw',
                   password:               'adminadmin',
                   password_confirmation:  'adminadmin',
                   phone:                  '0606060606',
                   street:                 '4, rue Jules Guesdes',
                   town:                   'Lille',
-                  type:                   'Users::Guest',
+                  type:                   'Users::Writer',
                   created_at:             1.week.ago,
                   updated_at:             1.week.ago)
 
+guest = User.create!( birthdate:      '1993-12-10',
+              country_code:           'France',
+              email:                  'guest@blog.fr',
+              firstname:              'guest',
+              lastname:               'tseug',
+              password:               'adminadmin',
+              password_confirmation:  'adminadmin',
+              phone:                  '0606060606',
+              street:                 '4, rue Jules Guesdes',
+              town:                   'Lille',
+              type:                   'Users::Guest',
+              created_at:             1.week.ago,
+              updated_at:             1.week.ago)
+
+(0..5).each do |i|
+  Comment.create!(content: Faker::Lorem.word, visible: 0)
+end
