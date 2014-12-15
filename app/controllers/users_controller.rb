@@ -1,9 +1,10 @@
 class UsersController < ApplicationController
   def index
-    @users = User.to_search params
+    @users = User.all
   end
 
   def show
+    @user = User.find(params[:id])
   end
 
   def new
@@ -16,6 +17,7 @@ class UsersController < ApplicationController
     authorize! :create, @user
 
     if @user.save
+
       redirect_to @user, as: :user, flash: { success: t('validation.create', model: @user.class.model_name.human.downcase) }
     else
       render 'new'
@@ -23,10 +25,12 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @user = User.find(params[:id])
     authorize! :update, @user
   end
 
   def update
+    @user = User.find(params[:id])
     authorize! :update, @user
 
     if @user.update_attributes(user_params)
@@ -38,18 +42,15 @@ class UsersController < ApplicationController
 
   def destroy
     authorize! :destroy, @user
+    @user = User.find(params[:id])
 
     @user.destroy
     redirect_to new_user_path, flash: { success: t('validation.destroy', model: @user.class.model_name.human.downcase) }
   end
-
+  
 private
 
-  def set_user
-    @user = User.friendly.find params[:id]
-  end
-
   def user_params
-    params.require(:user).permit(:avatar, :birthdate, :country_code, :email, :firstname, :lastname, :password, :password_confirmation, :phone, :street, :town, :type)
+    params.require(:user).permit(:avatar_cache, :avatar, :birthdate, :country_code, :email, :firstname, :lastname, :password, :password_confirmation, :phone, :street, :town, :type)
   end
 end

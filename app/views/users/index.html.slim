@@ -1,0 +1,28 @@
+- title 'Utilisateurs'
+- description 'Utilisateurs du Knowledge Manager'
+- set_meta_tags og: { title: 'Utilisateurs du Knowledge Manager', url: users_url }
+
+.row
+  .col-md-12
+    h1
+      | Utilisateurs
+      | &nbsp;
+      small Tous les utilisateurs
+    ol.breadcrumb
+      li.active
+        i.fa.fa-dashboard
+        | Utilisateurs
+.row
+  .col-md-2
+    - if can? :create, User.new
+      = link_to 'Créer un utilisateur', new_user_path, class: 'btn btn-block btn-success'
+
+  .col-md-10
+    - @users.each do |user|
+      .row.user-item
+        .col-md-3
+          h4
+            = link_to user.name, user
+        .col-md-6
+          blockquote
+            = user.email

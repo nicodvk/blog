@@ -1,0 +1,21 @@
+= simple_form_for @user, as: :user do |f|
+  .row
+    .col-md-6
+      = f.input :firstname
+    .col-md-6
+      = f.input :lastname
+  = f.input :email
+  = f.input :avatar
+  = f.input :password
+  = f.input :password_confirmation
+  .row
+    .col-md-6
+      = f.input :street
+    .col-md-6
+      = f.input :country_code, as: :country, input_html: { class: 'form-control' }
+  = f.input :town
+  = f.input :phone
+  = f.input :birthdate
+  - if current_user.type == 'Users::Admin'
+    = f.input :type, collection: { 'Administrateur' => 'Users::Admin', 'Rédacteur' => 'Users::Writer', 'Guest' => 'Users::Guest' }
+  = f.button :submit, 'Valider', class: 'btn-success mtl'
