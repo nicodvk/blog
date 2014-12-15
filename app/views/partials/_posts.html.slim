@@ -1,0 +1,10 @@
+.col-sm-8.blog-main
+  - @posts.each do |post|
+    h2
+      = link_to post.title, post_path(post.slug)
+    p.blog-post-meta
+      = I18n.localize(post.created, format: :long)
+    p
+      = post.hat
+    = render 'partials/post_tags', post: post
+  = will_paginate @posts, renderer: BootstrapPagination::Rails

@@ -1,17 +1,7 @@
 class TagsController < ApplicationController
-  before_action :set_tag, only: [:show]
-
-  def index
-  	@tags = Tag.all
-  end
-
   def show
-  end
-
-  def destroy
-  end
-
-  def set_tag
-    @tag = Tag.find params[:slug]
+  	@tags = Tag.all
+    @tag = Tag.find(params[:id])
+    @posts = @tag.posts.order('created DESC').paginate(:page => params[:page], :per_page => 5)
   end
 end
