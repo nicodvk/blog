@@ -1,0 +1,13 @@
+.col-sm-3.col-sm-offset-1.blog-sidebar
+  .sidebar-module.sidebar-module-inset
+    h4
+      | Fonctionnalités
+    p
+      | Vous pouvez consulter la liste des articles paginés, voir un article en détail avec sa liste de commentaires et afficher les articles par tag.
+  .sidebar-module
+    h4
+      | Tags
+    ol.list-unstyled
+      - tags.each do |tag|
+        li
+          = link_to tag.name, tag_path(tag.slug)

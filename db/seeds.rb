@@ -9,3 +9,9 @@
 (0..5).each do |i|
   Tag.create!(name: Faker::Lorem.word)
 end
+
+(0..10).each do |i|
+  Post.create!(title:     Faker::Lorem.sentence,
+               hat:       Faker::Lorem.paragraph,
+               content:   Faker::Lorem.paragraph(rand(5)))
+end

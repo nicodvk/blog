@@ -1,5 +1,7 @@
 doctype html
 head
+  title
+    | Awesome Blog
   meta content='EPSI' name='author'
   meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0' name='viewport'
   meta content='Blog - EPSI' property='og:site_name'
@@ -8,7 +10,16 @@ head
   = yield(:head)
   = csrf_meta_tags
 body
+  .blog-masthead
+    .container
+      nav.blog-nav
+        = link_to 'Accueil', root_path, class: 'blog-nav-item'
   .container
+    .blog-header
+      h1.blog-title
+        | Notre superbe blog
+      p.lead.blog-description
+        | Réalisé par Thomas Leduc, Nicolas Devynck et Qlogie
     .row
       = yield
   = javascript_include_tag 'application'
