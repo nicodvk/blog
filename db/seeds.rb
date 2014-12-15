@@ -6,16 +6,16 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-(0..5).each do |i|
+(0..8).each do |i|
   Tag.create!(name: Faker::Lorem.word)
 end
 
 tags = Tag.all
 
-(0..10).each do |i|
+(0..30).each do |i|
   Post.create!(title:     Faker::Lorem.sentence,
                hat:       Faker::Lorem.paragraph,
                content:   Faker::Lorem.paragraph(10),
-               tags:      tags.shuffle.take(rand(5)),
+               tags:      tags.shuffle.take(rand(8)),
                created:   Faker::Date.between(7.days.ago, Date.today))
 end

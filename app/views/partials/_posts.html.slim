@@ -7,3 +7,4 @@
     p
       = post.hat
     = render 'partials/post_tags', post: post
+  = will_paginate @posts, renderer: BootstrapPagination::Rails

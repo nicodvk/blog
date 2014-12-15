@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   before_action :set_tags, only: [:index, :show]
 
   def index
-  	@posts = Post.all.order('created DESC')
+  	@posts = Post.order('created DESC').paginate(:page => params[:page], :per_page => 5)
   end
 
   def show
