@@ -1,0 +1,6 @@
+hr
+  p
+    - post.tags.each do |tag|
+      = link_to tag_path(tag.slug) do
+        span.badge.blog-badge
+          = tag.name

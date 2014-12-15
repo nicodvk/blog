@@ -1,8 +1,11 @@
 .col-sm-8.blog-main
   h2
     = @post.title
+  p.blog-post-meta
+    = I18n.localize(@post.created, format: :long)
   blockquote
     = @post.hat
   p
     = @post.content
-= render 'tags', tags: @tags
+  = render 'partials/post_tags', post: @post
+= render 'partials/tags', tags: @tags

@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   before_action :set_tags, only: [:index, :show]
 
   def index
-  	@posts = Post.all
+  	@posts = Post.all.order('created DESC')
   end
 
   def show

@@ -1,8 +1,2 @@
-.col-sm-8.blog-main
-  - @posts.each do |post|
-    h2
-      = link_to post.title, post_path(post.slug)
-    p
-      = post.content
-    hr
-= render 'tags', tags: @tags
+= render 'partials/posts', posts: @posts
+= render 'partials/tags', tags: @tags

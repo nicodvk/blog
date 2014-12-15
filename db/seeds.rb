@@ -10,8 +10,12 @@
   Tag.create!(name: Faker::Lorem.word)
 end
 
+tags = Tag.all
+
 (0..10).each do |i|
   Post.create!(title:     Faker::Lorem.sentence,
                hat:       Faker::Lorem.paragraph,
-               content:   Faker::Lorem.paragraph(rand(5)))
+               content:   Faker::Lorem.paragraph(10),
+               tags:      tags.shuffle.take(rand(5)),
+               created:   Faker::Date.between(7.days.ago, Date.today))
 end
