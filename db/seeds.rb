@@ -9,3 +9,7 @@
 (0..5).each do |i|
   Tag.create!(name: Faker::Lorem.word)
 end
+
+(0..5).each do |i|
+  Comment.create!(content: Faker::Lorem.word, visible: 0)
+end

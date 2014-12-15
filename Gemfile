@@ -14,6 +14,7 @@ gem 'mongo'
 gem 'mongoid', '~> 4.0.0.rc1', 	github: 'mongoid/mongoid'
 gem 'mongoid_slug'
 gem 'sass-rails', '~> 4.0.3'
+gem 'simple_form'
 gem 'slim'
 gem 'spring',        			group: :development
 gem 'turbolinks'
