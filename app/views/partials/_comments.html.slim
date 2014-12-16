@@ -1,0 +1,5 @@
+- comments.each do |comment|
+	.col-md-10 
+		= comment.content
+    	small
+        = link_to comment.user.name, comment.user

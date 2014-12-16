@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   def index
-    @comments = Comment.all
+    @comments = @post.comments
   end
 
   def show
@@ -8,7 +8,8 @@ class CommentsController < ApplicationController
   end
 
   def new
-    @comment = Comment.new
+    @comment = @post.comments.build
+    authorize! :comment, @post
   end
 
   def edit
@@ -16,7 +17,9 @@ class CommentsController < ApplicationController
   end
 
   def create
-    @comment = Comment.new comment_params
+    @post = Post.find(params[:post_id])
+    @comment = @post.comments.create!(params[:comment])
+    @comment.user = current_user
     @comment.visible = false
     if @comment.save
       respond_to do |format|

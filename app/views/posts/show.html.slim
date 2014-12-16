@@ -8,4 +8,5 @@
   p
     = @post.content
   = render 'partials/post_tags', post: @post
+  = render 'partials/comments', comments: @post.comments
 = render 'partials/tags', tags: @tags

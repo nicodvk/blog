@@ -6,20 +6,6 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-(0..8).each do |i|
-  Tag.create!(name: Faker::Lorem.word)
-end
-
-tags = Tag.all
-
-(0..30).each do |i|
-  Post.create!(title:     Faker::Lorem.sentence,
-               hat:       Faker::Lorem.paragraph,
-               content:   Faker::Lorem.paragraph(10),
-               tags:      tags.shuffle.take(rand(8)),
-               created:   Faker::Date.between(7.days.ago, Date.today))
-end
-
 admin = User.create!( birthdate:              '1993-12-10',
                       country_code:           'France',
                       email:                  'admin@blog.fr',
@@ -62,6 +48,25 @@ guest = User.create!( birthdate:      '1993-12-10',
               created_at:             1.week.ago,
               updated_at:             1.week.ago)
 
-(0..5).each do |i|
-  Comment.create!(content: Faker::Lorem.word, visible: 0)
+(0..8).each do |i|
+  Tag.create!(name: "#{Faker::Lorem.word} #{Faker::Lorem.word}")
 end
+
+tags = Tag.all
+
+(0..30).each do |i|
+  Post.create!(
+              title:     Faker::Lorem.sentence,
+              hat:       Faker::Lorem.paragraph,
+              content:   Faker::Lorem.paragraph(10),
+              tags:      tags.shuffle.take(rand(8)),
+              user:      writer,
+              created:   Faker::Date.between(7.days.ago, Date.today),
+              comments:  [
+                            Comment.new(content: Faker::Lorem.sentence, visible: 0, user: guest),
+                            Comment.new(content: Faker::Lorem.sentence, visible: 0, user: guest),
+                            Comment.new(content: Faker::Lorem.sentence, visible: 0, user: guest)
+                          ]
+              )
+end
+posts = Post.all

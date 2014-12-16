@@ -7,7 +7,10 @@ class User
 
   devise :database_authenticatable, :registerable,
          :rememberable, :trackable, :validatable
-  
+
+  has_many :posts
+  #has_many :comments
+
   mount_uploader :avatar, AvatarUploader
   
   field :current_sign_in_at, 			type: Time
