@@ -63,9 +63,9 @@ tags = Tag.all
               user:      writer,
               created:   Faker::Date.between(7.days.ago, Date.today),
               comments:  [
-                            Comment.new(content: Faker::Lorem.sentence, visible: rand(0..1), user: guest),
-                            Comment.new(content: Faker::Lorem.sentence, visible: rand(0..1), user: guest),
-                            Comment.new(content: Faker::Lorem.sentence, visible: rand(0..1), user: guest)
+                            Comment.new(content: Faker::Lorem.sentence, visible: rand(0..1), user: guest, created: Faker::Date.between(7.days.ago, Date.today)),
+                            Comment.new(content: Faker::Lorem.sentence, visible: rand(0..1), user: guest, created: Faker::Date.between(7.days.ago, Date.today)),
+                            Comment.new(content: Faker::Lorem.sentence, visible: rand(0..1), user: guest, created: Faker::Date.between(7.days.ago, Date.today))
                           ]
               )
 end

@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  before_filter :authenticate_user!, :except => [:show, :index] 
   before_action :set_tags, only: [:index, :show]
 
   def index

@@ -1,10 +1,12 @@
 - comments.each do |comment|
-	- if comment.visible?
-		.media
-			.a.pull-left
-				= image_tag(comment.user.avatar.thumb, class: 'mrm')
-			.media-body
-				h4.media-heading
-					= comment.user.name
-				= comment.content
-		hr
+	.media
+		.a.pull-left
+			= image_tag(comment.user.avatar.thumb, class: 'mrm')
+		.media-body
+			h4.media-heading
+				= comment.user.name
+				small
+					|  Le   
+					= I18n.localize(comment.created, format: :long) 
+			= comment.content
+	hr

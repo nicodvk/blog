@@ -8,7 +8,7 @@
       |       par        
       = link_to post.user.name, user_path(post.user.slug) , class: 'text-right'
       |     -  
-  	  = link_to "#{post.comments.where(visible: true).count} commentaires",  post_path(post.slug, anchor: "comments") , class: 'text-right'
+  	  = link_to "#{post.comments.count} commentaires",  post_path(post.slug, anchor: "comments") , class: 'text-right'
     p
       = post.hat
     = render 'partials/post_tags', post: post

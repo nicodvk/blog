@@ -1,3 +1,6 @@
+h4
+	= "Laissez un commentaire !"
 = simple_form_for [@post, @comment] do |f|
-  = f.input :content, as: :text
-  = f.button :submit, 'Ajouter un commentaire'
+	.form-group
+			= f.input :content, as: :text, input_html: { class: 'form-control' }
+	= f.button :submit, 'Ajouter un commentaire', {class: 'btn btn-primary'}
