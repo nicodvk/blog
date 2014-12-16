@@ -17,6 +17,7 @@ tags = Tag.all
                hat:       Faker::Lorem.paragraph,
                content:   Faker::Lorem.paragraph(10),
                tags:      tags.shuffle.take(rand(8)),
+               likes:     Array.new, 
                created:   Faker::Date.between(7.days.ago, Date.today))
 end
 

@@ -3,6 +3,18 @@
     = @post.title
   p.blog-post-meta
     = I18n.localize(@post.created, format: :long)
+    |  - 
+    = link_to like_path(@post), method: :put do
+    	- if @like
+          | Je n'aime plus
+        - else
+          | J'aime
+    |  - 
+	= @post.likes.count
+	|  
+	i.fa.fa-heart
+
+
   blockquote
     = @post.hat
   p

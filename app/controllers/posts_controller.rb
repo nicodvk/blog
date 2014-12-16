@@ -7,6 +7,20 @@ class PostsController < ApplicationController
 
   def show
   	@post = Post.find(params[:id])
+    @like = @post.likes.include?(current_user.id)
+  end
+
+  def like
+    @post = Post.find(params[:id])
+
+    if !@post.likes.include?(current_user.id)
+      @post.likes << current_user.id
+    else
+      @post.likes.delete(current_user.id)
+    end
+
+    @post.save
+    redirect_to @post  
   end
 
   def set_tags

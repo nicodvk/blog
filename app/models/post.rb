@@ -8,6 +8,7 @@ class Post
   field :hat, type: String
   field :content, type: String
   field :created, type: Date
+  field :likes, type: Array
   
   slug :title, history: true
 
