@@ -2,11 +2,18 @@
   h2
     = @post.title
   p.blog-post-meta
-    = I18n.localize(@post.created, format: :long)
+		|Le    
+		= I18n.localize(@post.created, format: :long) 
+		|       par        
+		= link_to @post.user.name, user_path(@post.user.slug), class: 'text-right'
+
   blockquote
     = @post.hat
   p
     = @post.content
   = render 'partials/post_tags', post: @post
+  #comments
+  .well
+  = render 'comments/form'
   = render 'partials/comments', comments: @post.comments
 = render 'partials/tags', tags: @tags
