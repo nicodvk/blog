@@ -3,7 +3,12 @@
     h2
       = link_to post.title, post_path(post.slug)
     p.blog-post-meta
-      = I18n.localize(post.created, format: :long)
+      |Le    
+      = I18n.localize(post.created, format: :long) 
+      |       par        
+      = link_to post.user.name, user_path(post.user.slug) , class: 'text-right'
+      |     -  
+  	  = link_to "#{post.comments.count} commentaires",  post_path(post.slug, anchor: "comments") , class: 'text-right'
       |  - 
       = post.likes.count
       |  
@@ -11,4 +16,5 @@
     p
       = post.hat
     = render 'partials/post_tags', post: post
+
   = will_paginate @posts, renderer: BootstrapPagination::Rails

@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  before_filter :authenticate_user!, :except => [:show, :index] 
   before_action :set_tags, only: [:index, :show]
 
   def index
@@ -7,7 +8,7 @@ class PostsController < ApplicationController
 
   def show
   	@post = Post.find(params[:id])
-    @like = @post.likes.include?(current_user.id)
+    @comment = Comment.new
   end
 
   def like

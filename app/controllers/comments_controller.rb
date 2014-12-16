@@ -1,6 +1,10 @@
 class CommentsController < ApplicationController
+  before_filter :authenticate_user!, :except => [:show, :index] 
+  before_action :set_comment, only: :destroy
+  before_action :set_post
+
   def index
-    @comments = Comment.all
+    @comments = @post.comments
   end
 
   def show
@@ -8,7 +12,8 @@ class CommentsController < ApplicationController
   end
 
   def new
-    @comment = Comment.new
+    @comment = @post.comments.build
+    authorize! :comment, @post
   end
 
   def edit
@@ -16,13 +21,14 @@ class CommentsController < ApplicationController
   end
 
   def create
-    @comment = Comment.new comment_params
+    @comment = @post.comments.build comment_params
+    @comment.user = current_user
     @comment.visible = false
+    @comment.created = DateTime.now
+    authorize! :comment, @post
+
     if @comment.save
-      respond_to do |format|
-        format.html { redirect_to comments_path }
-        format.json { head :no_content }
-      end
+      redirect_to post_path(@post, anchor: 'comments'), flash: { success: t('validation.create', model: @comment.class.model_name.human.downcase) }
     else
       render 'new'
     end
@@ -38,13 +44,21 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @comment = Comment.find(params[:id])
+    authorize! :comment, @post
     @comment.destroy
-    redirect_to comments_path
+    redirect_to post_path(@post)
   end
 
 private
+  def set_post
+    @post = Post.find(params[:post_id])
+  end
+
+  def set_comment
+    @comment = Comment.find params[:id]
+  end
+
   def comment_params
-    params.require(:comment).permit(:content, :visible)
+    params.require(:comment).permit(:content, :visible, :created)
   end
 end

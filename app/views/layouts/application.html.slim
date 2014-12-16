@@ -12,8 +12,15 @@ head
 body
   .blog-masthead
     .container
-      nav.blog-nav
-        = link_to 'Accueil', root_path, class: 'blog-nav-item'
+      nav
+        .navbar-nav
+          = link_to 'Accueil', root_path, class: 'blog-nav-item'
+        .navbar-right
+          - unless user_signed_in?
+            = link_to 'Connexion', new_user_session_path, class: 'blog-nav-item'
+          - else
+            = link_to 'Modifier mon compte', current_user, class: 'blog-nav-item'
+            = link_to 'Déconnexion', destroy_user_session_path, method: :delete, class: 'blog-nav-item'
   .container
     .blog-header
       h1.blog-title
@@ -22,5 +29,10 @@ body
         | Réalisé par Thomas Leduc, Nicolas Devynck et Qlogie
     .row
       = yield
+  footer.blog-footer
+    p
+      | Magnifique blog conçu par la Qlogie team par Nicolas, Quentin et Thomas.
+    p
+      = link_to 'Retourner en haut', '#'
   = javascript_include_tag 'application'
   = yield(:scripts)

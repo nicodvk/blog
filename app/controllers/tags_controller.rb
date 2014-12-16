@@ -1,4 +1,6 @@
 class TagsController < ApplicationController
+  before_filter :authenticate_user!, :except => [:show] 
+
   def show
   	@tags = Tag.all
     @tag = Tag.find(params[:id])

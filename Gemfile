@@ -21,7 +21,7 @@ gem 'mongoid-grid_fs', github: 'ahoward/mongoid-grid_fs'
 gem 'mongoid_slug'
 gem 'rails-i18n', '~> 4.0.0'
 gem 'sass-rails', '~> 4.0.3'
-gem 'simple_form',          '~> 3.0.1'
+gem 'simple_form', '~> 3.1.0.rc1', github: 'plataformatec/simple_form', branch: 'master'
 gem 'slim'
 gem 'spring',        			group: :development
 gem 'therubyracer'

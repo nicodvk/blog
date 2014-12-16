@@ -2,10 +2,13 @@
   h2
     = @post.title
   p.blog-post-meta
+  	| Le     
     = I18n.localize(@post.created, format: :long)
+    |	par   
+    = link_to @post.user.name, user_path(@post.user.slug), class: 'text-right'
     |  - 
     = link_to like_path(@post), method: :put do
-    	- if @like
+    	- if current_user && @post.likes.include?(current_user.id)
           | Je n'aime plus
         - else
           | J'aime
@@ -20,4 +23,8 @@
   p
     = @post.content
   = render 'partials/post_tags', post: @post
-= render 'partials/tags', tags: @tags
+  #comments
+  .well
+  	= render 'comments/form'
+  = render 'partials/comments', comments: @post.comments.desc(:created)
+

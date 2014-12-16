@@ -11,4 +11,5 @@
       = link_to 'Editer', edit_user_path(@user.slug), class: 'btn btn-info'
     - if can? :destroy, @user
       = link_to 'Supprimer', @user, method: :delete, class: 'btn btn-danger mlm', confirm: 'Etes-vous sûr ?'
+= render 'partials/posts', posts: @posts
 
