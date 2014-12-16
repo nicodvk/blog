@@ -22,5 +22,10 @@ body
         | Réalisé par Thomas Leduc, Nicolas Devynck et Qlogie
     .row
       = yield
+  footer.blog-footer
+    p
+      | Magnifique blog conçu par la Qlogie team par Nicolas, Quentin et Thomas.
+    p
+      = link_to 'Retourner en haut', '#'
   = javascript_include_tag 'application'
   = yield(:scripts)
